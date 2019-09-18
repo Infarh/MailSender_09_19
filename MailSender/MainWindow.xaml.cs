@@ -29,5 +29,10 @@ namespace MailSender
         {
 
         }
+
+        private void ExitMenuItem_OnClick(object Sender, RoutedEventArgs E)
+        {
+            Close();
+        }
     }
 }
