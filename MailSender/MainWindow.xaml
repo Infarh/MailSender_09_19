@@ -8,6 +8,7 @@
         xmlns:data="clr-namespace:MailSender.lib.Data;assembly=MailSender.lib"
         xmlns:entityes="clr-namespace:MailSender.lib.Entityes;assembly=MailSender.lib"
         xmlns:db="clr-namespace:MailSender.lib.Data.Linq2SQL;assembly=MailSender.lib"
+        xmlns:ctrl="clr-namespace:MailSender.Controls"
         Title="MainWindow" 
         Width="800"
         Height="450">
@@ -32,10 +33,15 @@
                 <TextBlock>Готов к труду и обороне!</TextBlock>
             </StatusBarItem>
             <StatusBarItem>
+                <ctrl:TabItemsSwitcher Width="120"
+                                       LeftButtonClick="TabItemsSwitcher_OnLeftButtonClick"
+                                       RightButtonClick="TabItemsSwitcher_OnRightButtonClick"/>
+            </StatusBarItem>
+            <StatusBarItem>
                 <ProgressBar Value="30" Width="60" Height="10"/>
             </StatusBarItem>
         </StatusBar>
-        <TabControl>
+        <TabControl Name="MainTabCantrol">
             <TabItem Header="Рассылка">
                 <Grid>
                     <Grid.Resources>
