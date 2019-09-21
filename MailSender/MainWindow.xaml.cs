@@ -1,30 +1,41 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using MailSender.Controls;
 
 namespace MailSender
 {
-    /// <summary>
-    /// Логика взаимодействия для MainWindow.xaml
-    /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow
     {
-        public MainWindow()
+        public MainWindow() => InitializeComponent();
+
+        private void ExitMenuItem_OnClick(object Sender, System.Windows.RoutedEventArgs E) => Close();
+
+        private void TabItemsSwitcher_OnLeftButtonClick(object Sender, EventArgs E)
         {
-            InitializeComponent();
+            if (!(Sender is TabItemsSwitcher switcher)) return;
+
+            if (MainTabCantrol.SelectedIndex == 0) return;
+
+            MainTabCantrol.SelectedIndex--;
+            if (MainTabCantrol.SelectedIndex == 0)
+            {
+                switcher.LeftButtonVisible = false;
+            }
         }
 
-        private void ExitMenuItem_OnClick(object Sender, RoutedEventArgs E) => Close();
+        private void TabItemsSwitcher_OnRightButtonClick(object Sender, EventArgs E)
+        {
+            if (!(Sender is TabItemsSwitcher switcher)) return;
+
+            var tab_count = MainTabCantrol.Items.Count;
+
+            if(MainTabCantrol.SelectedIndex == tab_count - 1) return;
+
+            MainTabCantrol.SelectedIndex++;
+
+            if (MainTabCantrol.SelectedIndex == MainTabCantrol.Items.Count - 1)
+            {
+                switcher.RightButtonVisible = false;
+            }
+        }
     }
 }
