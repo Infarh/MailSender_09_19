@@ -25,14 +25,6 @@ namespace MailSender
             InitializeComponent();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void ExitMenuItem_OnClick(object Sender, RoutedEventArgs E)
-        {
-            Close();
-        }
+        private void ExitMenuItem_OnClick(object Sender, RoutedEventArgs E) => Close();
     }
 }

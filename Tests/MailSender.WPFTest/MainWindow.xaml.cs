@@ -2,13 +2,9 @@
 using System.Net;
 using System.Windows;
 using System.Net.Mail;
-using System.Security;
 
 namespace MailSender.WPFTest
 {
-    /// <summary>
-    /// Логика взаимодействия для MainWindow.xaml
-    /// </summary>
     public partial class MainWindow
     {
         public MainWindow()
@@ -21,8 +17,8 @@ namespace MailSender.WPFTest
             var host = "smtp.yandex.ru";
             var port = 25;
 
-            var user_name = UserNameEditor.Text;
-            var password = PasswordEditor.SecurePassword;
+            var user_name = "User name"; //UserNameEditor.Text;
+            var password = "Password"; //PasswordEditor.SecurePassword;
 
             var msg = "Hello World!!! " + DateTime.Now;
 
@@ -45,7 +41,7 @@ namespace MailSender.WPFTest
                         MessageBox.Show("Почта успешно отправлена",
                             "Успех!", MessageBoxButton.OK, MessageBoxImage.Information);
                     }
-                    catch(Exception error)
+                    catch (Exception error)
                     {
                         MessageBox.Show(error.Message,
                             "Ошибка!", MessageBoxButton.OK, MessageBoxImage.Error);
@@ -55,4 +51,3 @@ namespace MailSender.WPFTest
         }
     }
 }
-                                                                                      
