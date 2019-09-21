@@ -7,10 +7,7 @@ namespace MailSender.WPFTest
 {
     public partial class MainWindow
     {
-        public MainWindow()
-        {
-            InitializeComponent();
-        }
+        public MainWindow() => InitializeComponent();
 
         private void SendButton_OnClick(object sender, RoutedEventArgs e)
         {
