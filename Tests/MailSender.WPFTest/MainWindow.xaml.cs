@@ -7,7 +7,11 @@ namespace MailSender.WPFTest
 {
     public partial class MainWindow
     {
-        public MainWindow() => InitializeComponent();
+        public MainWindow()
+        {
+            InitializeComponent();
+            //DataContext = new MainWindowViewModel();
+        }
 
         private void SendButton_OnClick(object sender, RoutedEventArgs e)
         {

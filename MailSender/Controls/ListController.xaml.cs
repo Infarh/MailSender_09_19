@@ -95,7 +95,11 @@ namespace MailSender.Controls
         /// <summary>Индекс выбранного элемента</summary>
         //[Category("")]
         [Description("Индекс выбранного элемента")]
-        public int SelectedItemIndex { get => (int) GetValue(SelectedItemIndexProperty); set => SetValue(SelectedItemIndexProperty, value); }
+        public int SelectedItemIndex
+        {
+            get => (int) GetValue(SelectedItemIndexProperty);
+            set => SetValue(SelectedItemIndexProperty, value);
+        }
 
         #endregion
 
