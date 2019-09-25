@@ -7,8 +7,6 @@ namespace MailSender
     {
         public MainWindow() => InitializeComponent();
 
-        private void ExitMenuItem_OnClick(object Sender, System.Windows.RoutedEventArgs E) => Close();
-
         private void TabItemsSwitcher_OnLeftButtonClick(object Sender, EventArgs E)
         {
             if (!(Sender is TabItemsSwitcher switcher)) return;

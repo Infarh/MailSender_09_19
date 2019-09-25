@@ -10,10 +10,12 @@
         xmlns:db="clr-namespace:MailSender.lib.Data.Linq2SQL;assembly=MailSender.lib"
         xmlns:ctrl="clr-namespace:MailSender.Controls"
         xmlns:view="clr-namespace:MailSender.View"
+        xmlns:commands="clr-namespace:MailSender.Commands"
         Title="{Binding WindowTitle}" 
         Width="800"
         Height="450"
-        DataContext="{Binding MainWindowModel, Source={StaticResource Locator}}">
+        DataContext="{Binding MainWindowModel, Source={StaticResource Locator}}"
+        >
     <DockPanel>
         <Menu DockPanel.Dock="Top">
             <MenuItem Header="Файл">
@@ -21,7 +23,11 @@
                 <MenuItem Header="Открыть"/>
                 <MenuItem Header="Сохранить"/>
                 <Separator/>
-                <MenuItem Header="Выход" Click="ExitMenuItem_OnClick"/>
+                <MenuItem Header="Выход">
+                    <MenuItem.Command>
+                        <commands:ApplicationCloseCommand/>
+                    </MenuItem.Command>
+                </MenuItem>
             </MenuItem>
             <MenuItem Header="Сервис">
                 <MenuItem Header="Параметры" IsEnabled="False"/>

@@ -10,12 +10,14 @@ using GalaSoft.MvvmLight.CommandWpf;
 using MailSender.lib.Data.Linq2SQL;
 using MailSender.lib.MVVM;
 using MailSender.lib.Services;
+using MailSender.lib.Services.Interfaces;
+using MailSender.lib.Services.Linq2SQL;
 
 namespace MailSender.ViewModel
 {
     public class MainWindowViewModel : ViewModelBase
     {
-        private RecipientsDataProvider _RecipientsProvider;
+        private IRecipientsDataProvider _RecipientsProvider;
 
         private string _WindowTitle = "Рассыльщик почты v0.1";
 
@@ -51,7 +53,7 @@ namespace MailSender.ViewModel
 
         public ICommand SaveChangesCommand { get; }
 
-        public MainWindowViewModel(RecipientsDataProvider RecipientsProvider)
+        public MainWindowViewModel(IRecipientsDataProvider RecipientsProvider)
         {
             _RecipientsProvider = RecipientsProvider;
 
