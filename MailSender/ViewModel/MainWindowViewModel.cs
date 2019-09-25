@@ -4,8 +4,11 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.CommandWpf;
 using MailSender.lib.Data.Linq2SQL;
+using MailSender.lib.MVVM;
 using MailSender.lib.Services;
 
 namespace MailSender.ViewModel
@@ -22,21 +25,61 @@ namespace MailSender.ViewModel
             set => Set(ref _WindowTitle, value);
         }
 
-        public ObservableCollection<Recipient> Recipients { get; } = new ObservableCollection<Recipient>();
+        private ObservableCollection<Recipient> _Recipients = new ObservableCollection<Recipient>();
+
+        public ObservableCollection<Recipient> Recipients
+        {
+            get => _Recipients;
+            set => Set(ref _Recipients, value);
+        }
+
+        #region SelectedRecipient : Recipient - Выбранный получатель
+
+        /// <summary>Выбранный получатель</summary>
+        private Recipient _SelectedRecipient;
+
+        /// <summary>Выбранный получатель</summary>
+        public Recipient SelectedRecipient
+        {
+            get => _SelectedRecipient;
+            set => Set(ref _SelectedRecipient, value);
+        }
+
+        #endregion
+
+        public ICommand RefreshDataCommand { get; }
+
+        public ICommand SaveChangesCommand { get; }
 
         public MainWindowViewModel(RecipientsDataProvider RecipientsProvider)
         {
             _RecipientsProvider = RecipientsProvider;
 
+            RefreshDataCommand = new RelayCommand(OnRefreshDataCommandExecuted, CanRefreshDataCommandExecute);
+            SaveChangesCommand = new RelayCommand(OnSaveChangesCommandExecuted);
+
+            //RefreshData();
+        }
+
+        private void OnSaveChangesCommandExecuted()
+        {
+            _RecipientsProvider.SaveChanges();
+        }
+
+        private bool CanRefreshDataCommandExecute() => true;
+
+        private void OnRefreshDataCommandExecuted()
+        {
             RefreshData();
         }
 
         private void RefreshData()
         {
-            var recipients = Recipients;
-            recipients.Clear();
+            var recipients = new ObservableCollection<Recipient>();
             foreach (var recipient in _RecipientsProvider.GetAll())
                 recipients.Add(recipient);
+            Recipients = null;
+            Recipients = recipients;
         }
     }
 }

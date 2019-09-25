@@ -12,8 +12,10 @@
             <TextBlock>Фильтр:</TextBlock>
             <TextBox/>
         </DockPanel>
-        <Button DockPanel.Dock="Bottom" HorizontalAlignment="Center" Padding="30,10" Margin="0,7">Oбновить</Button>
-        <DataGrid Grid.Row="1" 
+        <Button DockPanel.Dock="Bottom" HorizontalAlignment="Center" Padding="30,10" Margin="0,7"
+                Content="Oбновить"
+                Command="{Binding RefreshDataCommand}"/>
+        <DataGrid SelectedItem="{Binding SelectedRecipient}" 
                   AutoGenerateColumns="False" 
                   ItemsSource="{Binding Recipients}"
                   GridLinesVisibility="Vertical" 
