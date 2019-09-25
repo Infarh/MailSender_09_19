@@ -9,9 +9,11 @@
         xmlns:entityes="clr-namespace:MailSender.lib.Entityes;assembly=MailSender.lib"
         xmlns:db="clr-namespace:MailSender.lib.Data.Linq2SQL;assembly=MailSender.lib"
         xmlns:ctrl="clr-namespace:MailSender.Controls"
-        Title="MainWindow" 
+        xmlns:view="clr-namespace:MailSender.View"
+        Title="{Binding WindowTitle}" 
         Width="800"
-        Height="450">
+        Height="450"
+        DataContext="{Binding MainWindowModel, Source={StaticResource Locator}}">
     <DockPanel>
         <Menu DockPanel.Dock="Top">
             <MenuItem Header="Файл">
@@ -44,9 +46,6 @@
         <TabControl Name="MainTabCantrol">
             <TabItem Header="Рассылка">
                 <Grid>
-                    <Grid.Resources>
-                        <db:MailSenderDBDataContext x:Key="DataBase"/>
-                    </Grid.Resources>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition/>
@@ -127,19 +126,9 @@
                             </Button>
                         </ToolBar>
                     </ToolBarTray>
-                    <DataGrid Grid.Row="1" 
-                              AutoGenerateColumns="False" 
-                              ItemsSource="{Binding Recipient, Source={StaticResource DataBase}}"
-                              GridLinesVisibility="Vertical" 
-                              AlternatingRowBackground="LightGray"
-                              IsReadOnly="True" 
-                              HeadersVisibility="Column">
-                        <DataGrid.Columns>
-                            <DataGridTextColumn Header="ID" Binding="{Binding Id}"/>
-                            <DataGridTextColumn Header="Имя" Binding="{Binding Name}"/>
-                            <DataGridTextColumn Header="Адрес" Width="*" Binding="{Binding Address}"/>
-                        </DataGrid.Columns>
-                    </DataGrid>
+                    <Grid Grid.Row="1">
+                        <view:RecipientsView/>
+                    </Grid>
                 </Grid>
             </TabItem>
             <TabItem Header="Планировщик">
