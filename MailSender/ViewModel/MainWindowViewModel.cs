@@ -51,8 +51,6 @@ namespace MailSender.ViewModel
 
             RefreshDataCommand = new RelayCommand(OnRefreshDataCommandExecuted, CanRefreshDataCommandExecute);
             SaveChangesCommand = new RelayCommand(OnSaveChangesCommandExecuted);
-
-            //RefreshData();
         }
 
         private void OnSaveChangesCommandExecuted()
@@ -60,7 +58,7 @@ namespace MailSender.ViewModel
             _RecipientsProvider.SaveChanges();
         }
 
-        private bool CanRefreshDataCommandExecute() => true;
+        private static bool CanRefreshDataCommandExecute() => true;
 
         private void OnRefreshDataCommandExecuted()
         {

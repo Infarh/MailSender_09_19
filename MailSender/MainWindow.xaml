@@ -7,7 +7,6 @@
         xmlns:l="clr-namespace:MailSender"
         xmlns:data="clr-namespace:MailSender.lib.Data;assembly=MailSender.lib"
         xmlns:entityes="clr-namespace:MailSender.lib.Entityes;assembly=MailSender.lib"
-        xmlns:db="clr-namespace:MailSender.lib.Data.Linq2SQL;assembly=MailSender.lib"
         xmlns:ctrl="clr-namespace:MailSender.Controls"
         xmlns:view="clr-namespace:MailSender.View"
         xmlns:commands="clr-namespace:MailSender.Commands"

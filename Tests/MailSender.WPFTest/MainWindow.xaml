@@ -4,44 +4,11 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008" mc:Ignorable="d"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:l="clr-namespace:MailSender.WPFTest"
-        Title="{Binding Title}" 
         Height="450" Width="800">
     <Window.DataContext>
         <l:MainWindowViewModel/>
     </Window.DataContext>
     <Grid>
-        <TextBox Name="TextEditor"
-                 Text="{Binding Title}"
-                 HorizontalAlignment="Left" Height="23" Margin="80,51,0,0" TextWrapping="Wrap" 
-                 VerticalAlignment="Top" Width="120"/>
-        <TextBlock Name="TextViewer" 
-                   Text="{Binding TitleLength}"
-                   HorizontalAlignment="Left" Margin="75,30,0,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
-        <ProgressBar Value="{Binding Text, ElementName=TextEditor}" 
-                     Minimum="0" Maximum="100"
-                     HorizontalAlignment="Left" Height="10" Margin="80,95,0,0" VerticalAlignment="Top" Width="155"/>
-        <Slider Value="{Binding Angle}"  
-                Minimum="0" Maximum="100" SmallChange="10"
-                HorizontalAlignment="Left" Margin="80,115,0,0" VerticalAlignment="Top" Width="155"
-                />
-        <Canvas HorizontalAlignment="Left" Margin="75,175,0,144" Width="100"/>
-        <Canvas Margin="55,175,127,59">
-            <Ellipse Width="150" Height="50" Fill="Blue" Stroke="Red" StrokeThickness="3" 
-                     Canvas.Left="{Binding OffsetX}" 
-                     Canvas.Top="{Binding OffsetY}"
-                     RenderTransformOrigin="0.5,0.5">
-                <Ellipse.RenderTransform>
-                    <RotateTransform Angle="{Binding Angle}"/>
-                </Ellipse.RenderTransform>
-            </Ellipse>
-        </Canvas>
-        <Slider Margin="100,138,172,0" VerticalAlignment="Top" Maximum="610"
-                Name="LeftValueSlider"
-                Value="{Binding OffsetX}"/>
-        <Slider HorizontalAlignment="Right" Margin="0,175,52,84" Orientation="Vertical" 
-                Name="TopValueSlider"
-                Maximum="185"
-                Value="{Binding OffsetY}"/>
 
     </Grid>
 </Window>
