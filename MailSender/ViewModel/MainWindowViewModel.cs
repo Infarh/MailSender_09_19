@@ -2,7 +2,7 @@
 using System.Windows.Input;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
-using MailSender.lib.Data.Linq2SQL;
+using MailSender.lib.Entityes;
 using MailSender.lib.Services.Interfaces;
 
 namespace MailSender.ViewModel
@@ -45,7 +45,8 @@ namespace MailSender.ViewModel
 
         public ICommand SaveChangesCommand { get; }
 
-        public MainWindowViewModel(IRecipientsDataProvider RecipientsProvider)
+        public MainWindowViewModel(
+            IRecipientsDataProvider RecipientsProvider)
         {
             _RecipientsProvider = RecipientsProvider;
 

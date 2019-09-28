@@ -1,11 +1,6 @@
-﻿namespace MailSender.lib.Entityes
+﻿using MailSender.lib.Entityes.Base;
+
+namespace MailSender.lib.Entityes
 {
-    public class Sender
-    {
-        public int Id { get; set; }
-
-        public string Name { get; set; }
-
-        public string Address { get; set; }
-    }
+    public class Sender : HumanEntity { }
 }
