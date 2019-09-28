@@ -17,14 +17,14 @@ namespace MailSender.ViewModel
 
             services.Register<MainWindowViewModel>();
 
-            //services
-            //   .TryRegister<IRecipientsDataProvider, Linq2SQLRecipientsDataProvider>()
-            //   .TryRegister(() => new MailSenderDBDataContext());
-
             services
-               .TryRegister<IRecipientsDataProvider, InMemoryRecipientsDataProvider>()
-               .TryRegister<ISendersDataProvider, InMemorySendersDataProvider>()
-               .TryRegister<IServersDataProvider, InMemoryServersDataProvider>();
+               .TryRegister<IRecipientsDataProvider, Linq2SQLRecipientsDataProvider>()
+               .TryRegister(() => new MailSenderDBDataContext());
+
+            //services
+            //   .TryRegister<IRecipientsDataProvider, InMemoryRecipientsDataProvider>()
+            //   .TryRegister<ISendersDataProvider, InMemorySendersDataProvider>()
+            //   .TryRegister<IServersDataProvider, InMemoryServersDataProvider>();
 
         }
 

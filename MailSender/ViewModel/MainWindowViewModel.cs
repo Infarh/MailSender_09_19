@@ -46,9 +46,7 @@ namespace MailSender.ViewModel
         public ICommand SaveChangesCommand { get; }
 
         public MainWindowViewModel(
-            IRecipientsDataProvider RecipientsProvider, 
-            ISendersDataProvider SendersProvider, 
-            IServersDataProvider ServersProvider)
+            IRecipientsDataProvider RecipientsProvider)
         {
             _RecipientsProvider = RecipientsProvider;
 
