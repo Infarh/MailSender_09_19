@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using MailSender.lib.Data.Linq2SQL;
+using MailSender.lib.Entityes;
 using MailSender.lib.Services.Interfaces;
 
 namespace MailSender.lib.Services.InMemory
@@ -9,10 +9,10 @@ namespace MailSender.lib.Services.InMemory
     {
         private readonly List<Recipient> _Recipients = new List<Recipient>();
 
-        /// <inheritdoc />
         public IEnumerable<Recipient> GetAll() => _Recipients;
 
-        /// <inheritdoc />
+        public Recipient GetById(int id) => _Recipients.FirstOrDefault(r => r.Id == id);
+
         public int Create(Recipient recipient)
         {
             if (_Recipients.Contains(recipient)) return recipient.Id;
@@ -21,7 +21,20 @@ namespace MailSender.lib.Services.InMemory
             return recipient.Id;
         }
 
-        /// <inheritdoc />
+        public void Edit(int id, Recipient item)
+        {
+            var db_item = GetById(id);
+            if (db_item is null) return;
+            db_item.Name = item.Name;
+            db_item.Address = item.Address;
+        }
+
+        public bool Remove(int id)
+        {
+            var db_item = GetById(id);
+            return _Recipients.Remove(db_item);
+        }
+
         public void SaveChanges() {  }
     }
 }

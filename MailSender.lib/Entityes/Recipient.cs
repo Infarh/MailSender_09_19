@@ -2,5 +2,5 @@
 
 namespace MailSender.lib.Entityes
 {
-    public class Sender : HumanEntity { }
+    public class Recipient : HumanEntity { }
 }
