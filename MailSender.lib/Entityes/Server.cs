@@ -8,6 +8,8 @@ namespace MailSender.lib.Entityes
 
         public int Port { get; set; } = 25;
 
+        public bool UseSSL { get; set; }
+
         public string UserName { get; set; }
 
         public string Password { get; set; }
