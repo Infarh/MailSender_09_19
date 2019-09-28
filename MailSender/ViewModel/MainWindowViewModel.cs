@@ -1,23 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.ObjectModel;
 using System.Windows.Input;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
 using MailSender.lib.Data.Linq2SQL;
-using MailSender.lib.MVVM;
-using MailSender.lib.Services;
 using MailSender.lib.Services.Interfaces;
-using MailSender.lib.Services.Linq2SQL;
 
 namespace MailSender.ViewModel
 {
     public class MainWindowViewModel : ViewModelBase
     {
-        private IRecipientsDataProvider _RecipientsProvider;
+        private readonly IRecipientsDataProvider _RecipientsProvider;
 
         private string _WindowTitle = "Рассыльщик почты v0.1";
 

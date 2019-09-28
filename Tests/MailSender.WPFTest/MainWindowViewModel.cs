@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using MailSender.lib.MVVM;
+﻿using MailSender.lib.MVVM;
 
 namespace MailSender.WPFTest
 {
@@ -18,13 +13,8 @@ namespace MailSender.WPFTest
             {
                 if (_Title == value) return;
                 _Title = value;
-                //OnPropertyChanged(nameof(Title));
-                //OnPropertyChanged("Title"); 
                 OnPropertyChanged();
                 OnPropertyChanged(nameof(TitleLength));
-                //OnPropertyChanged("TitleLength");
-
-
             }
         }
 

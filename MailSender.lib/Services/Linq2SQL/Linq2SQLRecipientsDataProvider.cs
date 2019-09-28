@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.Linq;
 using System.Linq;
 using MailSender.lib.Data.Linq2SQL;
 using MailSender.lib.Services.Interfaces;
@@ -13,11 +12,7 @@ namespace MailSender.lib.Services.Linq2SQL
 
         public Linq2SQLRecipientsDataProvider(MailSenderDBDataContext db) { _db = db; }
 
-        public IEnumerable<Recipient> GetAll()
-        {
-            _db.Refresh(RefreshMode.OverwriteCurrentValues);
-            return _db.Recipient.ToArray();
-        }
+        public IEnumerable<Recipient> GetAll() => _db.Recipient.ToArray();
 
         public int Create(Recipient recipient)
         {
