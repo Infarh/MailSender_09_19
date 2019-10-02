@@ -6,12 +6,6 @@ namespace MailSender.ConsoleTest
     {
         static void Main(string[] args)
         {
-            //ThreadTests.Start();
-
-            //SynchronizationTests.Start();
-
-            ThreadPoolTests.Start();
-
             Console.ReadLine();
         }
     }

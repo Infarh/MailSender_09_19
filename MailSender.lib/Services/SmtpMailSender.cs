@@ -10,6 +10,7 @@ using MailSender.lib.Entityes;
 
 namespace MailSender.lib.Services
 {
+    /// <summary>Объект для отправки почты по средствам smtp-протокола</summary>
     public class SmtpMailSender
     {
         private readonly string _Host;
