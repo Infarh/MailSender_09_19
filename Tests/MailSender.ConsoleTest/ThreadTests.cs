@@ -53,7 +53,7 @@ namespace MailSender.ConsoleTest
             Console.ReadLine();
 
             _IsClockEnabled = false;
-            if(!clock_thread.Join(100))
+            if(!clock_thread.Join(200))
                 clock_thread.Interrupt();
 
             //clock_thread.Abort();
@@ -73,7 +73,7 @@ namespace MailSender.ConsoleTest
                 {
                     //Console.Title = DateTime.Now.ToString(CultureInfo.InvariantCulture);
                     Console.Title = DateTime.Now.ToString("dd:MM:yyyy HH:mm:ss.ffff");
-                    Thread.Sleep(200);
+                    Thread.Sleep(100);
                 }
             }
             catch (ThreadAbortException e)
