@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -39,37 +40,41 @@ namespace MailSender.ConsoleTest
             //semaphore.Release();
 
             //var manual_event = new ManualResetEvent(false);
-            var auto_event = new AutoResetEvent(false);
+            //var auto_event = new AutoResetEvent(false);
 
 
-            var test_threads = Enumerable
-               .Range(0, 5)
-               .Select(i => new Thread(() =>
-                {
-                    Console.WriteLine("Поток {0} ожидает запуска...", Thread.CurrentThread.ManagedThreadId);
-                    auto_event.WaitOne();
+            //var test_threads = Enumerable
+            //   .Range(0, 5)
+            //   .Select(i => new Thread(() =>
+            //    {
+            //        Console.WriteLine("Поток {0} ожидает запуска...", Thread.CurrentThread.ManagedThreadId);
+            //        auto_event.WaitOne();
 
-                    Console.WriteLine($"Поток {i}");
-                    Console.WriteLine("Поток {0} завершился", Thread.CurrentThread.ManagedThreadId);
+            //        Console.WriteLine($"Поток {i}");
+            //        Console.WriteLine("Поток {0} завершился", Thread.CurrentThread.ManagedThreadId);
 
-                    auto_event.Reset();
-                })).ToArray();
+            //        auto_event.Reset();
+            //    })).ToArray();
 
-            foreach (var thread in test_threads)
-                thread.Start();
+            //foreach (var thread in test_threads)
+            //    thread.Start();
 
-            Console.WriteLine("Потоки ожидают запуска...");
-            Console.ReadLine();
+            //Console.WriteLine("Потоки ожидают запуска...");
+            //Console.ReadLine();
 
-            auto_event.Set();
+            //auto_event.Set();
 
-            Console.ReadLine();
+            //Console.ReadLine();
 
-            auto_event.Set();
+            //auto_event.Set();
 
-            Console.ReadLine();
+            //Console.ReadLine();
 
-            auto_event.Set();
+            //auto_event.Set();
+
+           var concurent_dict = new ConcurrentDictionary<string, List<string>>();
+
+
 
         }
 

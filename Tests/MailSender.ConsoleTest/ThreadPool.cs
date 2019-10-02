@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -21,6 +22,7 @@ namespace MailSender.ConsoleTest
 
             ThreadPool.SetMinThreads(5, 5);
             ThreadPool.SetMaxThreads(15, 15);
+
             foreach (var message in messages)
             {
                 ThreadPool.QueueUserWorkItem(ProcessPoolMessage, message);
