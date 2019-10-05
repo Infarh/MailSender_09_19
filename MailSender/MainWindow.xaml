@@ -5,7 +5,6 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:fa="http://schemas.fontawesome.io/icons/"
         xmlns:l="clr-namespace:MailSender"
-        xmlns:data="clr-namespace:MailSender.lib.Data;assembly=MailSender.lib"
         xmlns:entityes="clr-namespace:MailSender.lib.Entityes;assembly=MailSender.lib"
         xmlns:ctrl="clr-namespace:MailSender.Controls"
         xmlns:view="clr-namespace:MailSender.View"
@@ -78,6 +77,7 @@
                             <Button ToolTip="Перейти">
                                 <fa:ImageAwesome Height="18" Icon="ClockOutline" Foreground="DarkBlue"/>
                             </Button>
+                            <!--<TextBlock Text="{Binding Recipients[0].Address}"/>-->
                         </ToolBar>
                         <ToolBar Band="1">
                             <Label MinWidth="85">Получатели</Label>

@@ -5,11 +5,15 @@
              xmlns:ms="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:local="clr-namespace:MailSender" 
              StartupUri="MainWindow.xaml">
-  <Application.Resources>
-    <ResourceDictionary>
-      <vm:ViewModelLocator x:Key="Locator" 
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Resources/Converters.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+
+            <vm:ViewModelLocator x:Key="Locator" 
                            d:IsDataSource="True"
                            xmlns:vm="clr-namespace:MailSender.ViewModel" />
-    </ResourceDictionary>
-  </Application.Resources>
+        </ResourceDictionary>
+    </Application.Resources>
 </Application>
