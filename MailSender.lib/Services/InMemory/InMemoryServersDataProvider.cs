@@ -3,7 +3,7 @@ using MailSender.lib.Services.Interfaces;
 
 namespace MailSender.lib.Services.InMemory
 {
-    public class InMemoryServersDataProvider : InDataProvider<Server>, IServersDataProvider
+    public class InMemoryServersDataProvider : InMemoryDataProvider<Server>, IServersDataProvider
     {
         public override void Edit(int id, Server item)
         {

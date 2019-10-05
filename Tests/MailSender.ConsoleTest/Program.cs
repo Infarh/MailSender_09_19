@@ -9,6 +9,4 @@ namespace MailSender.ConsoleTest
             Console.ReadLine();
         }
     }
-
-   
 }

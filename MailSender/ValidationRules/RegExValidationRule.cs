@@ -11,7 +11,7 @@ namespace MailSender.ValidationRules
         public string Pattern
         {
             get => _Regex?.ToString();
-            set => _Regex = value is null ? null : value == string.Empty ? null : new Regex(value);
+            set => _Regex = string.IsNullOrEmpty(value) ? null : new Regex(value);
         }
 
         public bool AllowNull { get; set; } = true;
@@ -30,21 +30,9 @@ namespace MailSender.ValidationRules
             if (!(value is string str))
                 str = value.ToString();
 
-            //string null_str1 = null;
-            //string null_str2 = null;
-            //var s1 = "Hello World";
-
-            //var s = null_str1 ?? null_str2 ?? s1;
-            //var s = null_str1;
-            //if (s == null) s = null_str2;
-            //if (s == null) s = s1;
-
             return _Regex.IsMatch(str)
                 ? ValidationResult.ValidResult
                 : new ValidationResult(false, ErrorMessage ?? $"Строка не удовлетворяет регулярному выражению {Pattern}");
-
-            //return new ValidationResult(false, "Сообщение об ошибке");
-            //return ValidationResult.ValidResult;
         }
     }
 }
