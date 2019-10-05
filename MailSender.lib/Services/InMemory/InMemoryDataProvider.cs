@@ -5,7 +5,7 @@ using MailSender.lib.Services.Interfaces;
 
 namespace MailSender.lib.Services.InMemory
 {
-    public abstract class InDataProvider<T> : IDataProvider<T> where T : BaseEntity
+    public abstract class InMemoryDataProvider<T> : IDataProvider<T> where T : BaseEntity
     {
         protected readonly List<T> _Items = new List<T>();
 

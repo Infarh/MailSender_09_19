@@ -196,8 +196,6 @@ namespace MailSender.Controls
         #endregion 
         #endregion
 
-        //propdp +Tab
-
         public ListController() => InitializeComponent();
     }
 }

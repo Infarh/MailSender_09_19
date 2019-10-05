@@ -6,7 +6,6 @@
              xmlns:l="clr-namespace:MailSender.Controls"
              xmlns:fa="http://schemas.fontawesome.io/icons/" 
              d:DesignHeight="22" d:DesignWidth="275">
-    <!-- DataContext="{Binding RelativeSource={RelativeSource Self}}" - грабли! -->
     <UserControl.Resources>
         <Style TargetType="{x:Type fa:ImageAwesome}">
             <Setter Property="Height" Value="14"/>
@@ -35,7 +34,6 @@
                 <fa:ImageAwesome Icon="Times" Foreground="Red"/>
             </Button>
         </StackPanel>
-        <!--<ComboBox ItemsSource="{Binding Items, RelativeSource={RelativeSource AncestorType={x:Type l:ListController}}}"/>-->
         <ComboBox MinWidth="120" 
                   ItemsSource="{Binding Items}" 
                   SelectedItem="{Binding SelectedItem}"

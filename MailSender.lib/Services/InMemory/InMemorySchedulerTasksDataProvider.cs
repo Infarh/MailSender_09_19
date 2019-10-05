@@ -3,7 +3,7 @@ using MailSender.lib.Services.Interfaces;
 
 namespace MailSender.lib.Services.InMemory
 {
-    public class InMemorySchedulerTasksDataProvider : InDataProvider<SchedulerTask>, ISchedulerTasksDataProvider
+    public class InMemorySchedulerTasksDataProvider : InMemoryDataProvider<SchedulerTask>, ISchedulerTasksDataProvider
     {
         public override void Edit(int id, SchedulerTask item)
         {

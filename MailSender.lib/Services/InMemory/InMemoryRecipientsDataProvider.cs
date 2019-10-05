@@ -5,7 +5,7 @@ using MailSender.lib.Services.Interfaces;
 
 namespace MailSender.lib.Services.InMemory
 {
-    public class InMemoryRecipientsDataProvider : InDataProvider<Recipient>, IRecipientsDataProvider
+    public class InMemoryRecipientsDataProvider : InMemoryDataProvider<Recipient>, IRecipientsDataProvider
     {
         public override void Edit(int id, Recipient item)
         {

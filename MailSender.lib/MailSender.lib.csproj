@@ -31,10 +31,11 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <SignAssembly>true</SignAssembly>
+    <SignAssembly>false</SignAssembly>
   </PropertyGroup>
   <PropertyGroup>
-    <AssemblyOriginatorKeyFile>MailSender.lib.snk</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="PresentationCore" />
@@ -49,13 +50,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DataBase.cs" />
     <Compile Include="Data\Linq2SQL\MailSenderDB.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>MailSenderDB.dbml</DependentUpon>
     </Compile>
-    <Compile Include="Data\TestData.cs" />
     <Compile Include="Entityes\Base\BaseEntity.cs" />
     <Compile Include="Entityes\Base\HumanEntity.cs" />
     <Compile Include="Entityes\Base\NamedEntity.cs" />
@@ -65,8 +64,6 @@
     <Compile Include="Entityes\SchedulerTask.cs" />
     <Compile Include="Entityes\Sender.cs" />
     <Compile Include="Entityes\Server.cs" />
-    <Compile Include="MailSenderService.cs" />
-    <Compile Include="MailSheduler.cs" />
     <Compile Include="MVVM\LambdaCommand.cs" />
     <Compile Include="MVVM\ViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -75,7 +72,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
-    <Compile Include="Services\InMemory\InDataProvider.cs" />
+    <Compile Include="Services\InMemory\InMemoryDataProvider.cs" />
     <Compile Include="Services\InMemory\InMemoryEmailsDataProvider.cs" />
     <Compile Include="Services\InMemory\InMemoryRecipientsDataProvider.cs" />
     <Compile Include="Services\InMemory\InMemoryRecipientsListsDataProvider.cs" />
@@ -106,7 +103,6 @@
     <None Include="Data\Linq2SQL\MailSenderDB.dbml.layout">
       <DependentUpon>MailSenderDB.dbml</DependentUpon>
     </None>
-    <None Include="MailSender.lib.snk" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

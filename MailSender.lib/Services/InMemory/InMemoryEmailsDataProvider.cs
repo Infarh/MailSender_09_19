@@ -4,7 +4,7 @@ using MailSender.lib.Services.Interfaces;
 
 namespace MailSender.lib.Services.InMemory
 {
-    public class InMemoryEmailsDataProvider : InDataProvider<Email>, IEmailsDataProvider
+    public class InMemoryEmailsDataProvider : InMemoryDataProvider<Email>, IEmailsDataProvider
     {
         public InMemoryEmailsDataProvider()
         {
