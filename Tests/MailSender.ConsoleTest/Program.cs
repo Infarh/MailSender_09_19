@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -13,6 +14,37 @@ namespace MailSender.ConsoleTest
         {
             using (var db = new SongsDB())
             {
+                //db.Configuration.AutoDetectChangesEnabled = false;
+
+                db.Database.Log = msg => Console.WriteLine("EF: {0}\r\n-----------------", msg);
+
+                var bad_artists = db.Artists
+                   .Where(a => a.Name.EndsWith("2"))
+                   .Include(a => a.Tracks);
+
+                foreach (var bad_artist in bad_artists) // .Include(a => a.Tracks) - требование о загрузке данных из связанной таблицы
+                {
+                    bad_artist.Name = $"{bad_artist.Name} - Bad";
+
+                    for (var i = 0; i < 10; i++)
+                        bad_artist.Tracks.Add(new Track
+                        {
+                            Name = $"Bad track {i + 1} from bad_artist.Name"
+                        });
+                }
+
+                Console.ReadLine();
+                Console.Clear();
+
+                //db.ChangeTracker.DetectChanges();
+                db.SaveChanges();
+
+            }
+
+            Console.ReadLine();
+
+            using (var db = new SongsDB())
+            {
                 //db.Database.Log = msg => Console.WriteLine("EF: {0}\r\n-----------------", msg);
 
                 var tracks_count = db.Tracks.Count();
@@ -22,10 +54,10 @@ namespace MailSender.ConsoleTest
 
                 foreach (var info in long_tracks
                    .Select(t => new
-                    {
-                        ArtistName = t.Artist.Name,
-                        t.Artist.Birthday
-                    }))
+                   {
+                       ArtistName = t.Artist.Name,
+                       t.Artist.Birthday
+                   }))
                 {
                     Console.WriteLine("Artist:{0}, date:{1}", info.ArtistName, info.Birthday);
                 }
