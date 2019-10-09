@@ -60,6 +60,10 @@
     <Compile Include="Data\Migrations\201910091806052_Initial.designer.cs">
       <DependentUpon>201910091806052_Initial.cs</DependentUpon>
     </Compile>
+    <Compile Include="Data\Migrations\201910091815396_TrackStyleAdded.cs" />
+    <Compile Include="Data\Migrations\201910091815396_TrackStyleAdded.designer.cs">
+      <DependentUpon>201910091815396_TrackStyleAdded.cs</DependentUpon>
+    </Compile>
     <Compile Include="Data\Migrations\Configuration.cs" />
     <Compile Include="Data\SongsDB.cs" />
     <Compile Include="Data\Track.cs" />
@@ -76,6 +80,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Data\Migrations\201910091806052_Initial.resx">
       <DependentUpon>201910091806052_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Data\Migrations\201910091815396_TrackStyleAdded.resx">
+      <DependentUpon>201910091815396_TrackStyleAdded.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
