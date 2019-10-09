@@ -1,5 +1,6 @@
 using CommonServiceLocator;
 using GalaSoft.MvvmLight.Ioc;
+using MailSender.lib.Data.EF;
 using MailSender.lib.Data.Linq2SQL;
 using MailSender.lib.Services.InMemory;
 using MailSender.lib.Services.Interfaces;
@@ -18,7 +19,8 @@ namespace MailSender.ViewModel
 
             services
                .TryRegister<IRecipientsDataProvider, Linq2SQLRecipientsDataProvider>()
-               .TryRegister(() => new MailSenderDBDataContext());
+               .TryRegister(() => new MailSenderDBDataContext())
+               .TryRegister(() => new MailSenderDB());
 
             //services
             //   .TryRegister<IRecipientsDataProvider, InMemoryRecipientsDataProvider>()
