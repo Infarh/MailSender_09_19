@@ -1,9 +1,11 @@
-﻿using MailSender.lib.Entityes.Base;
+﻿using System.ComponentModel.DataAnnotations;
+using MailSender.lib.Entityes.Base;
 
 namespace MailSender.lib.Entityes
 {
     public class Server : NamedEntity
     {
+        [Required]
         public string Host { get; set; }
 
         public int Port { get; set; } = 25;
