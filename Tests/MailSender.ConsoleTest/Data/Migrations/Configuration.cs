@@ -1,4 +1,6 @@
-﻿namespace MailSender.ConsoleTest.Data.Migrations
+﻿using System.Collections.Generic;
+
+namespace MailSender.ConsoleTest.Data.Migrations
 {
     using System;
     using System.Data.Entity;
@@ -14,12 +16,31 @@
             MigrationsDirectory = @"Data\Migrations";
         }
 
-        protected override void Seed(SongsDB context)
+        protected override void Seed(SongsDB db)
         {
-            //  This method will be called after migrating to the latest version.
+            for (var i = 1; i <= 3; i++)
+            {
+                var artist = new Artist
+                {
+                    Name = $"Artist name {i}",
+                    Birthday = DateTime.Now.Subtract(TimeSpan.FromDays(365 * (i + 20))),
+                    Tracks = new List<Track>()
+                };
 
-            //  You can use the DbSet<T>.AddOrUpdate() helper extension method
-            //  to avoid creating duplicate seed data.
+                for (var j = 1; j < 3; j++)
+                {
+                    var track = new Track
+                    {
+                        Name = $"Track {i + j}",
+                        Length = j * 456
+                    };
+                    artist.Tracks.Add(track);
+                }
+
+                db.Artists.Add(artist);
+            }
+
+            db.SaveChanges();
         }
     }
 }
