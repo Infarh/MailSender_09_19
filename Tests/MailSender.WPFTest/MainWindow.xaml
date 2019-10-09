@@ -9,24 +9,6 @@
         <l:MainWindowViewModel/>
     </Window.DataContext>
     <Grid>
-        <Button Content="Start" Click="OnStartButtonClick"
-                HorizontalAlignment="Left"
-                Margin="125,75,0,0" 
-                VerticalAlignment="Top" Width="75"/>
-        <TextBlock Name="ResultText" HorizontalAlignment="Left"
-                   Margin="145,40,0,0"
-                   TextWrapping="Wrap" 
-                   Text="Результат будет здесь." 
-                   VerticalAlignment="Top"/>
-        <ProgressBar Name="ProgressInformer" HorizontalAlignment="Left" 
-                     Height="20" 
-                     Margin="125,120,0,0"
-                     VerticalAlignment="Top" 
-                     Width="250"/>
-        <Button Content="Cancel" Click="OnCancelButtonClick"
-                HorizontalAlignment="Left"
-                Margin="300,75,0,0" 
-                VerticalAlignment="Top" Width="75"/>
-
+       
     </Grid>
 </Window>
