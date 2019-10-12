@@ -104,6 +104,7 @@
     <Compile Include="Services\Interfaces\IDataProvider.cs" />
     <Compile Include="Services\Interfaces\IEmailsDataProvider.cs" />
     <Compile Include="Services\Interfaces\IMailSenderService.cs" />
+    <Compile Include="Services\Interfaces\IPlugin.cs" />
     <Compile Include="Services\Interfaces\IRecipientsDataProvider.cs" />
     <Compile Include="Services\Interfaces\IRecipientsListsDataProvider.cs" />
     <Compile Include="Services\Interfaces\IScedulerTasksDataProvider.cs" />
