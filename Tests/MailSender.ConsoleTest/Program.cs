@@ -1,4 +1,5 @@
 ﻿using System;
+using MailSender.ConsoleTest.Reports;
 
 namespace MailSender.ConsoleTest
 {
@@ -6,9 +7,19 @@ namespace MailSender.ConsoleTest
     {
         static void Main(string[] args)
         {
-           
 
-            Console.ReadLine();
+            var report = new Report
+            {
+                Data1 = "Тестовые даныне",
+                TimeValue = DateTime.Now.Subtract(TimeSpan.FromDays(365 * 17))
+            };
+
+            const string report_file = "TestReport.docx";
+
+            report.CreatePackage(report_file);
+
+
+            //Console.ReadLine();
         }
     }
 }

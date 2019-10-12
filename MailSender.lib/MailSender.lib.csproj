@@ -88,6 +88,11 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Compile Include="Services\EF\DataContextProvider.cs" />
+    <Compile Include="Services\EF\EFDataProvider.cs" />
+    <Compile Include="Services\EF\EFDataProvider2.cs" />
+    <Compile Include="Services\EF\EFRecipientsDataProvider.cs" />
+    <Compile Include="Services\EF\EFSendersDataProvider.cs" />
     <Compile Include="Services\InMemory\InMemoryDataProvider.cs" />
     <Compile Include="Services\InMemory\InMemoryEmailsDataProvider.cs" />
     <Compile Include="Services\InMemory\InMemoryRecipientsDataProvider.cs" />
@@ -95,6 +100,7 @@
     <Compile Include="Services\InMemory\InMemorySchedulerTasksDataProvider.cs" />
     <Compile Include="Services\InMemory\InMemorySendersDataProvider.cs" />
     <Compile Include="Services\InMemory\InMemoryServersDataProvider.cs" />
+    <Compile Include="Services\InMemory\MemoryDataContext.cs" />
     <Compile Include="Services\Interfaces\IDataProvider.cs" />
     <Compile Include="Services\Interfaces\IEmailsDataProvider.cs" />
     <Compile Include="Services\Interfaces\IMailSenderService.cs" />
@@ -132,6 +138,7 @@
   <ItemGroup>
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
