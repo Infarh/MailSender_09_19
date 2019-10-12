@@ -11,6 +11,24 @@ namespace MailSender.ViewModel
     {
         private readonly IRecipientsDataProvider _RecipientsProvider;
 
+        private string _TestProperty;
+
+        public string TestProperty
+        {
+            get => _TestProperty;
+            set
+            {
+                _TestProperty = value;
+                //RaisePropertyChanged();
+                //RaisePropertyChanged(nameof(TestProperty));
+                //RaisePropertyChanged("TestProperty");
+                RaisePropertyChanged(() => TestProperty);
+                RaisePropertyChanged(() => TestPropertyLength);
+            }
+        }
+
+        public int TestPropertyLength => _TestProperty?.Length ?? -1;
+
         private string _WindowTitle = "Рассыльщик почты v0.1";
 
         public string WindowTitle

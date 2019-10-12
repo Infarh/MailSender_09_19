@@ -1,105 +1,195 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.Entity;
+using System.ComponentModel;
+using System.IO;
 using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
-using MailSender.ConsoleTest.Data;
+using System.Linq.Expressions;
+using MailSender.ConsoleTest.Reports;
+using System.Reflection;
 
 namespace MailSender.ConsoleTest
 {
     class Program
     {
-        static void Main(string[] args)
+        [Description("Entry point")]
+        static void Main([Description("Command line attributes")] string[] args)
         {
-            using (var db = new SongsDB())
+            //var report = new Report
+            //{
+            //    Data1 = "Тестовые даныне",
+            //    TimeValue = DateTime.Now.Subtract(TimeSpan.FromDays(365 * 17))
+            //};
+
+            //const string report_file = "TestReport.docx";
+            //report.CreatePackage(report_file);
+
+            //for (var i = 0; i < 10; i++)
+            //    Console.WriteLine(i);
+
+            //Assembly
+            //AssemblyName
+            //Module
+
+            //Type type = typeof(Program);
+            //var program = new Program();
+            //Type type = program.GetType();
+
+            //MemberInfo
+            //MethodInfo method = type.GetMethod("Main");
+            //ParameterInfo paameter = method.GetParameters().FirstOrDefault();
+            //ConstructorInfo
+            //PropertyInfo
+            //EventInfo
+            //FieldInfo
+
+            const string lib_file_name = "TestLib.dll";
+            var lib_file_path = Path.GetFullPath(lib_file_name);
+
+            var lib = Assembly.LoadFile(lib_file_path);
+
+            //foreach (var type in lib.DefinedTypes)
+            //    Console.WriteLine(type.FullName);
+
+            var console_printer_type = lib.GetType("TestLib.ConsolePrinter");
+
+            //foreach (var method in console_printer_type.GetMethods())
+            //    Console.WriteLine("{0} {1}({2})",
+            //        method.ReturnType.Name,
+            //        method.Name,
+            //        string.Join(", ", method.GetParameters().Select(p => $"{p.ParameterType.Name} {p.Name}")));
+
+            var printer_ctor = console_printer_type.GetConstructor(new[] { typeof(string) });
+
+            object printer_obj = printer_ctor.Invoke(new object[] { "PrinterPrefix> " });
+
+            var print_method = console_printer_type.GetMethod("Print");
+
+            print_method.Invoke(printer_obj, new object[] { "Data to print!" });
+
+            var prefix_field = console_printer_type.GetField("_Prefix", BindingFlags.NonPublic | BindingFlags.Instance);
+
+            string field_value = (string) prefix_field.GetValue(printer_obj);
+
+            field_value += $"{DateTime.Now} |||";
+
+            prefix_field.SetValue(printer_obj, field_value);
+
+            var get_prefix_method = console_printer_type.GetMethod("GetPrefixLength", BindingFlags.Instance | BindingFlags.NonPublic);
+
+            var result = (int) get_prefix_method.Invoke(printer_obj, new object[] {42, "Hello World!"});
+
+            //dynamic printer = Activator.CreateInstance(console_printer_type, new object[] { "Hello World!" }, null);
+            //printer.Print("QWE");
+
+            var S1 = Sum("QWE", "123");
+            Console.WriteLine(S1);
+
+            var V1 = Sum(42, 54);
+            Console.WriteLine(V1);
+
+            var V2 = Sum(42, 3.141592653589793238);
+            Console.WriteLine(V2);
+
+            var V3 = Sum(42, "Hello World!");
+            Console.WriteLine(V3);
+
+            //var V4 = Sum(42, new List<int>());
+
+            var data = new object[]
             {
-                //db.Configuration.AutoDetectChangesEnabled = false;
+                "Hello World!",
+                42,
+                3.141592653589793238,
+                true,
+                new List<int>()
+            };
+            Console.Clear();
+            //ProcessData(data);
 
-                db.Database.Log = msg => Console.WriteLine("EF: {0}\r\n-----------------", msg);
+            Func<string, int> str_len = str => str.Length;
+            Expression<Func<string, int>> expr = str => str.Length;
 
-                var bad_artists = db.Artists
-                   .Where(a => a.Name.EndsWith("2"))
-                   .Include(a => a.Tracks);
+            Expression<Func<int, int, int>> summ_expr = (x, y) => x + y;
 
-                foreach (var bad_artist in bad_artists) // .Include(a => a.Tracks) - требование о загрузке данных из связанной таблицы
-                {
-                    bad_artist.Name = $"{bad_artist.Name} - Bad";
+            var function = summ_expr.Compile();
 
-                    for (var i = 0; i < 10; i++)
-                        bad_artist.Tracks.Add(new Track
-                        {
-                            Name = $"Bad track {i + 1} from bad_artist.Name"
-                        });
-                }
+            var value = function(3, 5);
 
-                Console.ReadLine();
-                Console.Clear();
 
-                //db.ChangeTracker.DetectChanges();
-                db.SaveChanges();
+            var parameter = Expression.Parameter(typeof(string), "Message");
+            var body = Expression.Call(
+                Expression.Constant(printer_obj),
+                print_method,
+                parameter);
 
-            }
+            var print_expr = Expression.Lambda<Action<string>>(
+                body,
+                parameter);
+
+            var print_action = print_expr.Compile();
+
+            print_action("123");
+
+            var list = new List<int>();
+
+
+            Console.WriteLine(MemberName(list, l => l.Count));
+            Console.WriteLine(MemberName(list, l => l.Capacity));
+            Console.WriteLine(MemberName(list, l => l.Remove(5)));
 
             Console.ReadLine();
+        }
 
-            using (var db = new SongsDB())
-            {
-                //db.Database.Log = msg => Console.WriteLine("EF: {0}\r\n-----------------", msg);
+        /*
+         
+        public virtual void RaisePropertyChanged<T>(Expression<Func<T>> propertyExpression)
+        {
+          if (this.PropertyChanged == null)
+            return;
+          string propertyName = ObservableObject.GetPropertyName<T>(propertyExpression);
+          if (string.IsNullOrEmpty(propertyName))
+            return;
+          this.RaisePropertyChanged(propertyName);
+        }
+         
+         */
 
-                var tracks_count = db.Tracks.Count();
-                Console.WriteLine("В базе данных содержится {0} песен", tracks_count);
+        private static dynamic Sum(dynamic X, dynamic Y) { return X + Y; }
 
-                var long_tracks = db.Tracks.Where(track => track.Length > 500);
 
-                foreach (var info in long_tracks
-                   .Select(t => new
-                   {
-                       ArtistName = t.Artist.Name,
-                       t.Artist.Birthday
-                   }))
-                {
-                    Console.WriteLine("Artist:{0}, date:{1}", info.ArtistName, info.Birthday);
-                }
-
-                //db.Database.ExecuteSqlCommand()
-            }
-
-            //Console.WriteLine();
-            //Console.ReadLine();
-
-            //Console.Clear();
-
-            //using (var db = new SongsDB())
-            //{
-            //    db.Database.Log = msg => Console.WriteLine("EF: {0}\r\n-----------------", msg);
-
-            //    for (var i = 1; i <= 3; i++)
+        private static void ProcessData(object[] data)
+        {
+            //foreach (var value in data)
+            //    switch (value)
             //    {
-            //        var artist = new Artist
-            //        {
-            //            Name = $"Artist name {i}",
-            //            Birthday = DateTime.Now.Subtract(TimeSpan.FromDays(365 * (i + 20))), 
-            //            Tracks = new List<Track>()
-            //        };
-
-            //        for (var j = 1; j < 3; j++)
-            //        {
-            //            var track = new Track
-            //            {
-            //                Name = $"Track {i + j}",
-            //                Length = j * 456
-            //            };
-            //            artist.Tracks.Add(track);
-            //        }
-
-            //        db.Artists.Add(artist);
+            //        case string v: Process(v); break;
+            //        case int v: Process(v); break;
+            //        case double v: Process(v); break;
+            //        case bool v: Process(v); break;
             //    }
 
-            //    db.SaveChanges();
-            //}
+            foreach (var value in data)
+            {
+                dynamic v = value;
+                Process(v);
+            }
+        }
 
-            Console.ReadLine();
+        private static void Process(string value) => Console.WriteLine("string: {0}", value);
+        private static void Process(int value) => Console.WriteLine("int: {0}", value);
+        private static void Process(double value) => Console.WriteLine("double: {0}", value);
+        private static void Process(bool value) => Console.WriteLine("bool: {0}", value);
+        private static void Process(object value) => Console.WriteLine("object: {0}", value);
+
+        public static string MemberName<T, Q>(T Item, Expression<Func<T, Q>> Expr)
+        {
+            var body = Expr.Body;
+            switch (body)
+            {
+                case MemberExpression member: return member.Member.Name;
+            }
+
+            return body.ToString();
         }
     }
 }
